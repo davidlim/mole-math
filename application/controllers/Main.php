@@ -3,21 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+	public function __construct() {
+		parent::__construct();
+		$this->load->model('math_model');
+	}
+
 	public function index() {
 		$this->load->view('header');
 		$this->load->view('intro');
@@ -26,14 +16,46 @@ class Main extends CI_Controller {
 
 	public function question() {
 
+		$units = $this->math_model->get_units();
 
-
-
-
-
+		$question = array(
+			'problem'		=>	'The number you were given is the mass in grams of aluminum metal you are planning to use for a chemical reaction. How many moles of aluminum is this?',
+			'number'			=>	'123.4',
+			'start_unit'	=>	'g',
+			'units'			=>	$units,
+			'student'		=>	'John',
+		);
 
 		$this->load->view('header');
 		$this->load->view('question', $question);
 		$this->load->view('footer');
+	}
+
+	public function answer() {
+		if (is_null($this->input->post('submit'))) {
+			redirect(base_url() . 'index.php/main/question/');
+			exit();
+		}
+
+		/*
+			Determine if student answer the question correctly
+
+
+		*/
+
+
+
+		$answer = array(
+			'problem'		=>	$this->input->post('problem'),
+			'number'			=>	$this->input->post('number'),
+			'student'		=>	$this->input->post('student'),
+			'start_unit'	=>	$this->input->post('start-unit'),
+			'post'			=> $this->input->post(),
+		);
+
+		$this->load->view('header');
+		$this->load->view('answer', $answer);
+		$this->load->view('footer');
+
 	}
 }

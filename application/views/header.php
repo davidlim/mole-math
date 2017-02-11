@@ -13,3 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/app.css">
 </head>
 <body>
+	<header>
+		<div class="row columns">
+			<h1>Mole Math</h1>
+		</div>
+	</header>

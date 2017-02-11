@@ -1,0 +1,29 @@
+header {
+	background-color: #333;
+	color: white;
+	margin-bottom: 1rem;
+	padding: .5rem 0;
+}
+
+header h1 {
+	font-size: 4rem;
+}
+
+section {
+	display: block;
+	margin-bottom: 2rem;
+}
+
+.number {
+	color: #484;
+}
+
+.units {
+	color: #4b4;
+	font-style: italic;
+}
+
+.answer {
+	font-size: 2rem;
+	padding: 2rem 1rem;
+}
